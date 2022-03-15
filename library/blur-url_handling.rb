@@ -52,7 +52,7 @@ module Blur
     def self.included klass
       klass.extend ClassMethods
       klass.url_handler = URLHandler.new
-      klass.register! message: -> (script, user, channel, line) {
+      klass.register! message: -> (script, user, channel, line, _tags) {
         return unless urls = URI.extract(line, %w[http https])
 
         urls.each do |url|
